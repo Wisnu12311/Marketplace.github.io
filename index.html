@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Second Gear Collection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ================================================
+         NAVIGASI / NAVBAR
+         ================================================ -->
+    <nav class="navbar">
+        <div class="nav-container">
+
+            <!-- Logo -->
+            <div class="logo">GEAR<span>COLLECTION</span></div>
+
+            <!-- Menu Navigasi -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#product">Product</a></li>
+            </ul>
+
+            <!-- Jam & Ikon Keranjang -->
+            <div class="nav-right">
+                <span class="time" id="currentTime">00:00</span>
+                <div class="cart-icon-nav" onclick="toggleCart()">
+                    <span>🛒</span>
+                    <span class="cart-count-nav" id="navCartCount">0</span>
+                </div>
+            </div>
+
+            <!-- Tombol Hamburger (Mobile) -->
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+        </div>
+    </nav>
+    <!-- END NAVBAR -->
+
+
+    <!-- ================================================
+         HERO SECTION
+         ================================================ -->
+    <section id="home" class="hero">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">SECOND GEAR COLLECTION</h1>
+            <p class="hero-subtitle">Our Gear Collection • Second Like New</p>
+            <a href="#shop" class="btn-shop">Shop Now →</a>
+        </div>
+    </section>
+    <!-- END HERO SECTION -->
+
+
+    <!-- ================================================
+         SECTION PRODUK
+         ================================================ -->
+    <section id="shop" class="products">
+        <div class="container">
+
+            <!-- Judul Section -->
+            <h2 class="section-title">OUR PRODUCTS</h2>
+
+            <!-- Dropdown Filter Kategori -->
+            <select class="sort-select" onchange="filterCategory(this.value)">
+                <option value="all">Semua Produk</option>
+                <option value="mouse">Mouse</option>
+                <option value="keyboard">Keyboard</option>
+                <option value="laptop">Laptop</option>
+            </select>
+
+            <!-- Grid Produk (diisi oleh JavaScript) -->
+            <div class="product-grid" id="productGrid"></div>
+
+        </div>
+    </section>
+    <!-- END SECTION PRODUK -->
+
+
+    <!-- ================================================
+         MODAL DETAIL PRODUK
+         ================================================ -->
+    <div class="modal" id="productDetailModal">
+        <div class="modal-content modal-large">
+
+            <!-- Header Modal -->
+            <div class="modal-header">
+                <h3 id="detailTitle">DETAIL PRODUK</h3>
+                <button class="close-modal" onclick="closeProductDetail()">×</button>
+            </div>
+
+            <!-- Body Modal (diisi oleh JavaScript) -->
+            <div class="modal-body" id="productDetailBody"></div>
+
+        </div>
+    </div>
+    <!-- END MODAL DETAIL PRODUK -->
+
+
+    <!-- ================================================
+         FLOATING CART BUTTON (pojok kanan bawah)
+         ================================================ -->
+    <div class="floating-cart" id="floatingCart" onclick="toggleCart()">
+        <span class="cart-count" id="cartCount">0</span>
+        <span class="cart-icon">🛒</span>
+    </div>
+    <!-- END FLOATING CART -->
+
+
+    <!-- ================================================
+         SIDEBAR KERANJANG BELANJA
+         ================================================ -->
+    <div class="cart-sidebar" id="cartSidebar">
+
+        <!-- Header Sidebar -->
+        <div class="cart-header">
+            <h3>KERANJANG BELANJA</h3>
+            <button class="close-cart" onclick="toggleCart()">×</button>
+        </div>
+
+        <!-- Daftar Item Keranjang (diisi oleh JavaScript) -->
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">Keranjang belanja kosong</div>
+        </div>
+
+        <!-- Footer: Total & Tombol Checkout -->
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>TOTAL:</span>
+                <span id="cartTotal">Rp 0</span>
+            </div>
+            <button class="btn-checkout" onclick="showPaymentModal()">CHECKOUT</button>
+        </div>
+
+    </div>
+    <!-- END SIDEBAR KERANJANG -->
+
+
+    <!-- ================================================
+         MODAL PEMBAYARAN
+         ================================================ -->
+    <div class="modal" id="paymentModal">
+        <div class="modal-content">
+
+            <!-- Header Modal -->
+            <div class="modal-header">
+                <h3>PILIH METODE PEMBAYARAN</h3>
+                <button class="close-modal" onclick="closePaymentModal()">×</button>
+            </div>
+
+            <!-- Body Modal -->
+            <div class="modal-body">
+
+                <!-- Pilihan Metode Bayar -->
+                <div class="payment-options">
+                    <div class="payment-option" onclick="showWhatsAppPayment()">
+                        <span class="payment-icon">📱</span>
+                        <h4>WHATSAPP</h4>
+                        <p>Hubungi admin via WhatsApp</p>
+                    </div>
+                    <div class="payment-option" onclick="showQRPayment()">
+                        <span class="payment-icon">📷</span>
+                        <h4>QR CODE</h4>
+                        <p>Scan untuk pembayaran</p>
+                    </div>
+                </div>
+
+                <!-- Detail Pembayaran (diisi oleh JavaScript) -->
+                <div class="payment-detail" id="paymentDetail"></div>
+
+            </div>
+        </div>
+    </div>
+    <!-- END MODAL PEMBAYARAN -->
+
+
+    <!-- ================================================
+         OVERLAY (latar gelap saat modal/sidebar aktif)
+         ================================================ -->
+    <div class="overlay" id="overlay" onclick="closeAll()"></div>
+    <!-- END OVERLAY -->
+
+
+    <!-- ================================================
+         JAVASCRIPT
+         ================================================ -->
+    <script src="script.js"></script>
+
+</body>
+</html>
